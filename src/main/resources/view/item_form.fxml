@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="467.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.item.ItemFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="2.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label layoutX="242.0" layoutY="21.0" text="Thogakade Item Form">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtid" layoutX="33.0" layoutY="94.0" promptText="ID" />
+      <JFXTextField fx:id="txtdesc" layoutX="221.0" layoutY="94.0" prefHeight="26.0" prefWidth="174.0" promptText="Description" />
+      <JFXTextField fx:id="txtpacksize" layoutX="432.0" layoutY="94.0" prefHeight="26.0" prefWidth="135.0" promptText="Packet Size" />
+      <JFXTextField fx:id="txtunitprize" layoutX="33.0" layoutY="146.0" prefHeight="26.0" prefWidth="135.0" promptText="Unit Prize" />
+      <JFXTextField fx:id="txtqty" layoutX="221.0" layoutY="146.0" prefHeight="26.0" prefWidth="135.0" promptText="Qty" />
+      <JFXButton layoutX="319.0" layoutY="187.0" onAction="#btnAdditemOnAction" prefHeight="26.0" prefWidth="73.0" style="-fx-background-color: #2ecc71;" text="Add Item">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="405.0" layoutY="187.0" onAction="#btnUpdateItemOnAction" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: #f1c40f;" text="Update Item">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="513.0" layoutY="187.0" onAction="#btnDeleteItemOnAction" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: #e74c3c;" text="Delete Item">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="612.0" layoutY="187.0" onAction="#btnViewSearchOnAction" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: #3498db;" text="Search Item">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="itemtable" layoutX="24.0" layoutY="247.0" prefHeight="200.0" prefWidth="675.0">
+        <columns>
+          <TableColumn fx:id="collitemcode" prefWidth="75.0" text="ItemCode" />
+          <TableColumn fx:id="colldesc" prefWidth="346.40000915527344" text="Description" />
+            <TableColumn fx:id="collpacksize" prefWidth="71.99993896484375" text="PackSize" />
+            <TableColumn fx:id="collunitprize" prefWidth="85.60003662109375" text="UnitPrice" />
+            <TableColumn fx:id="collqty" prefWidth="96.7999267578125" text="QtyOnHand" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

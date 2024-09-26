@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="582.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.placeorder.PlaceOrderFormController">
+   <children>
+      <Rectangle arcHeight="5.0" fill="DODGERBLUE" height="74.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="720.0" />
+      <Label layoutX="203.0" layoutY="20.0" text="Thogakade Place Order Form">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <Group layoutX="200.0" layoutY="90.0">
+         <children>
+            <Label layoutX="-35.0" text="Order ID :">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="100.0" text="Date :">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbldate" layoutX="141.0" text="2023-12-11">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="232.0" text="Time :">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbltime" layoutX="273.0" text="09:34:59">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtorderid" layoutX="34.0" layoutY="-4.0" prefHeight="26.0" prefWidth="61.0" />
+         </children>
+      </Group>
+      <ComboBox fx:id="cmbcusid" layoutX="50.0" layoutY="124.0" prefWidth="150.0" promptText="Customer ID" />
+      <ComboBox fx:id="cmbitemcode" layoutX="50.0" layoutY="166.0" prefWidth="150.0" promptText="Item Code" />
+      <JFXTextField fx:id="txtcusname" editable="false" layoutX="240.0" layoutY="124.0" promptText="Customer Name" />
+      <JFXTextField fx:id="txtitemdesc" editable="false" layoutX="240.0" layoutY="166.0" promptText="Item Description" />
+      <JFXTextField fx:id="txtcusaddress" editable="false" layoutX="393.0" layoutY="124.0" promptText="Address" />
+      <JFXTextField fx:id="txtitemstock" editable="false" layoutX="393.0" layoutY="166.0" promptText="Stock Level" />
+      <JFXTextField fx:id="txtitemunitprice" editable="false" layoutX="548.0" layoutY="166.0" promptText="Unit Price" />
+      <JFXTextField fx:id="txtqty" layoutX="302.0" layoutY="211.0" prefHeight="26.0" prefWidth="75.0" promptText="Qty" />
+      <JFXButton layoutX="391.0" layoutY="211.0" onAction="#btnAddItemOnAction" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #3498db;" text="Add Item" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tablecart" layoutX="6.0" layoutY="262.0" prefHeight="200.0" prefWidth="710.0">
+        <columns>
+          <TableColumn fx:id="collitemcode" prefWidth="114.4000244140625" text="Item Code" />
+          <TableColumn fx:id="colldesc" prefWidth="252.800048828125" text="Description" />
+            <TableColumn fx:id="collqty" prefWidth="57.5999755859375" text="Qty" />
+            <TableColumn fx:id="collunitprice" prefWidth="89.5999755859375" text="Unit Price" />
+            <TableColumn fx:id="colltotal" prefWidth="187.20001220703125" text="Total" />
+        </columns>
+         <tooltip>
+            <Tooltip autoHide="true" contentDisplay="CENTER" text="Your Cart">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Tooltip>
+         </tooltip>
+      </TableView>
+      <JFXButton layoutX="554.0" layoutY="528.0" onAction="#btnPlaceOrderOnAction" prefHeight="30.0" prefWidth="144.0" style="-fx-background-color: #2ecc71;" text="Place Order" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="40.0" layoutY="478.0" prefHeight="27.0" prefWidth="150.0" text="Total Amount :- " textFill="RED">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="548.0" layoutY="478.0" prefHeight="27.0" prefWidth="30.0" text="Rs." textFill="RED">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbltotalbill" layoutX="585.0" layoutY="478.0" prefHeight="27.0" prefWidth="106.0" text="0.00" textFill="RED">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="499.0" layoutY="211.0" onAction="#btnUpdateCartOnAction" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #3498db;" text="Update Cart" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="607.0" layoutY="211.0" onAction="#btnRemoveItemOnAction" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #3498db;" text="Remove Item" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

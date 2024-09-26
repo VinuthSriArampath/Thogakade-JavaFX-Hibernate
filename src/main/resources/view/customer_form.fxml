@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="580.0" prefWidth="946.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.customer.CustomerFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutX="1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="945.0" />
+      <Label layoutX="301.0" layoutY="20.0" text="Thogakade Customer Form">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="443.0" layoutY="245.0" onAction="#btnAddCustomerOnAction" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: #2ecc71;" text="Add Customer">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="557.0" layoutY="245.0" onAction="#btnUpdateCustomerOnAction" prefHeight="26.0" prefWidth="121.0" style="-fx-background-color: #f1c40f;" text="Update Customer">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="684.0" layoutY="245.0" onAction="#btnDeleteCustomerOnAction" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #e74c3c;" text="Delete Customer">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="804.0" layoutY="245.0" onAction="#btnSearchCustomerOnAction" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #3498db;" text="Search Customer">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="txtid" layoutX="53.0" layoutY="84.0" promptText="ID" />
+      <JFXComboBox fx:id="txttitle" layoutX="53.0" layoutY="129.0" prefHeight="26.0" prefWidth="135.0" promptText="Title" />
+      <JFXTextField fx:id="txtname" layoutX="219.0" layoutY="130.0" prefHeight="26.0" prefWidth="174.0" promptText="Name" />
+      <DatePicker fx:id="txtdob" layoutX="444.0" layoutY="130.0" prefHeight="26.0" prefWidth="143.0" promptText="Date Of Birth" />
+      <JFXTextField fx:id="txtaddress" layoutX="53.0" layoutY="185.0" prefHeight="26.0" prefWidth="135.0" promptText="Address" />
+      <JFXTextField fx:id="txtcity" layoutX="219.0" layoutY="185.0" prefHeight="26.0" prefWidth="135.0" promptText="City" />
+      <JFXTextField fx:id="txtprovince" layoutX="380.0" layoutY="185.0" prefHeight="26.0" prefWidth="135.0" promptText="Province" />
+      <JFXTextField fx:id="txtpostalcode" layoutX="546.0" layoutY="185.0" prefHeight="26.0" prefWidth="135.0" promptText="Postal Code" />
+      <JFXTextField fx:id="txtsalary" layoutX="704.0" layoutY="185.0" prefHeight="26.0" prefWidth="135.0" promptText="Salary" />
+      <TableView fx:id="customertable" layoutX="9.0" layoutY="289.0" prefHeight="265.0" prefWidth="926.0">
+         <columns>
+            <TableColumn fx:id="collid" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="collname" prefWidth="115.20001220703125" text="Name" />
+            <TableColumn fx:id="collbday" prefWidth="127.20001220703125" text="Date Of Birth" />
+            <TableColumn fx:id="collsalary" minWidth="0.0" prefWidth="106.39996337890625" text="Salary" />
+            <TableColumn fx:id="colladdress" prefWidth="138.39996337890625" text="Address" />
+            <TableColumn fx:id="collcity" prefWidth="155.20001220703125" text="City" />
+            <TableColumn fx:id="collprovince" prefWidth="118.39996337890625" text="Province" />
+            <TableColumn fx:id="collpostal" prefWidth="87.9998779296875" text="PostalCode" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
