@@ -1,9 +1,11 @@
 package edu.icet.controller.placeorder;
 import com.jfoenix.controls.JFXTextField;
 
-import edu.icet.controller.customer.CustomerServiceImp1;
 import edu.icet.controller.item.ItemServiceImpl;
 import edu.icet.model.*;
+import edu.icet.service.ServiceFactory;
+import edu.icet.service.custom.impl.CustomerServiceImpl;
+import edu.icet.util.ServiceType;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -82,7 +84,6 @@ public class PlaceOrderFormController implements Initializable {
     private JFXTextField txtqty;
 
     ObservableList<Cart> cart=FXCollections.observableArrayList();
-
     @FXML
     void btnAddItemOnAction(ActionEvent event) {
 
@@ -246,20 +247,22 @@ public class PlaceOrderFormController implements Initializable {
     private void setCustomer(String newValue) {
         if (newValue!=null){
             Customer customer = searchCustomer(newValue);
-            txtcusname.setText(customer.getName());
-            txtcusaddress.setText(customer.getAddress());
+            txtcusname.setText(customer.getCustName());
+            txtcusaddress.setText(customer.getCustAddress());
         }
     }
 
     private Customer searchCustomer(String id) {
-        return CustomerServiceImp1.getInstance().searchCustomer(id);
+        CustomerServiceImpl customerService = ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
+        return customerService.searchCustomer(id);
     }
 
     private void loadItemCodes(){
         cmbitemcode.setItems(ItemServiceImpl.getInstance().getItemCodes());
     }
     private void loadCustomerIds(){
-        cmbcusid.setItems(CustomerServiceImp1.getInstance().getCustomerIds());
+        CustomerServiceImpl customerService = ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
+        cmbcusid.setItems(customerService.getCustomerIds());
     }
 
 }

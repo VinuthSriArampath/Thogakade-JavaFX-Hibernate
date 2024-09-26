@@ -1,5 +1,7 @@
 package edu.icet.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,14 +12,16 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Entity
 public class Customer {
-    private String id;
-    private String title;
-    private String name;
-    private LocalDate dob;
+    @Id
+    private String CustID;
+    private String CustTitle;
+    private String CustName;
+    private LocalDate DOB;
     private Double salary;
-    private String address;
-    private String city;
-    private String province;
-    private String postalcode;
+    private String CustAddress;
+    private String City;
+    private String Province;
+    private String PostalCode;
 }

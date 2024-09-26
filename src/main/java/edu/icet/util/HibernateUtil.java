@@ -1,7 +1,5 @@
 package edu.icet.util;
-
-
-import edu.icet.Entity.CustomerEntity;
+import edu.icet.model.Customer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -16,7 +14,7 @@ public class HibernateUtil {
     private static SessionFactory createSession() {
         StandardServiceRegistry build = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
         Metadata metadata = new MetadataSources(build)
-                .addAnnotatedClass(CustomerEntity.class)
+                .addAnnotatedClass(Customer.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();
