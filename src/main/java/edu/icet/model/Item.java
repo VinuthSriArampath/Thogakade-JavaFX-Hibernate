@@ -1,5 +1,7 @@
 package edu.icet.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,10 +11,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Entity
 public class Item {
-    private String itemcode;
-    private String desc;
-    private String packsize;
-    private Double unitprize;
-    private Integer qty;
+    @Id
+    private String ItemCode;
+    private String Description;
+    private String PackSize;
+    private Double UnitPrice;
+    private Integer QtyOnHand;
 }

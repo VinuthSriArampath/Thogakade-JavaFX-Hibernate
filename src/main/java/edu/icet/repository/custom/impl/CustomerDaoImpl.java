@@ -16,7 +16,22 @@ import java.util.List;
 
 public class CustomerDaoImpl implements CustomerDao {
     @Override
-    public ObservableList<String> getCustomerIds() {
+    public boolean delete(String id) {
+        try {
+            Session session = HibernateUtil.getSession();
+            session.beginTransaction();
+            session.delete(new Customer(id,null,null,null,null,null,null,null,null));
+            session.getTransaction().commit();
+            session.close();
+            return true;
+        } catch (HibernateException e) {
+            throw new RuntimeException(e);
+
+        }
+    }
+
+    @Override
+    public ObservableList<String> getIds() {
         ObservableList<String> customerIds=FXCollections.observableArrayList();
         ObservableList<Customer> customers;
         customers=getAll();
@@ -37,21 +52,6 @@ public class CustomerDaoImpl implements CustomerDao {
             return true;
         } catch (HibernateException e) {
             return false;
-        }
-    }
-
-    @Override
-    public boolean delete(Customer customer) {
-        try {
-            Session session = HibernateUtil.getSession();
-            session.beginTransaction();
-            session.delete(customer);
-            session.getTransaction().commit();
-            session.close();
-            return true;
-        } catch (HibernateException e) {
-            throw new RuntimeException(e);
-
         }
     }
 

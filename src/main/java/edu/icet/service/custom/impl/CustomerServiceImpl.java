@@ -10,6 +10,8 @@ import javafx.collections.ObservableList;
 
 
 public class CustomerServiceImpl implements CustomerService {
+    CustomerDao customerDao = DaoFactory.getInstance().getDaoType(DaoType.CUSTOMER);
+
     @Override
     public boolean updateCustomer(Customer customer) {
         return customerDao.update(customer);
@@ -27,10 +29,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public ObservableList<String> getCustomerIds() {
-        return customerDao.getCustomerIds();
+        return customerDao.getIds();
     }
-
-    CustomerDao customerDao = DaoFactory.getInstance().getDaoType(DaoType.CUSTOMER);
 
     @Override
     public boolean addCustomer(Customer customer) {
@@ -38,7 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public boolean deleteCustomer(Customer customer) {
-        return customerDao.delete(customer);
+    public boolean deleteCustomer(String id) {
+        return customerDao.delete(id);
     }
 }

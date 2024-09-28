@@ -2,7 +2,10 @@ package edu.icet.controller.item;
 
 import com.jfoenix.controls.JFXTextField;
 import edu.icet.model.Item;
+import edu.icet.service.ServiceFactory;
+import edu.icet.service.custom.ItemService;
 import edu.icet.util.CrudUtil;
+import edu.icet.util.ServiceType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -54,12 +57,11 @@ public class ItemFormController implements Initializable {
     @FXML
     private JFXTextField txtunitprize;
 
-    ItemService service;
-
+    ItemService1 service;
+    ItemService service1=ServiceFactory.getInstance().getService(ServiceType.ITEM);
     @FXML
     void btnAdditemOnAction(ActionEvent event) {
-        Item item=new Item(txtid.getText(),txtdesc.getText(), txtpacksize.getText(),Double.parseDouble(txtunitprize.getText()),Integer.parseInt(txtqty.getText()));
-        if(service.addItem(item)){
+        if(service1.addItem(new Item(txtid.getText(),txtdesc.getText(), txtpacksize.getText(),Double.parseDouble(txtunitprize.getText()),Integer.parseInt(txtqty.getText())))){
             new Alert(Alert.AlertType.INFORMATION,"Item Added Successfully").show();
             loadtable();
         }else {
@@ -69,7 +71,7 @@ public class ItemFormController implements Initializable {
 
     @FXML
     void btnDeleteItemOnAction(ActionEvent event) {
-        if (service.deleteItem(txtid.getText())){
+        if (service1.deleteItem(txtid.getText())){
             new Alert(Alert.AlertType.INFORMATION,String.format("Item Name :- %s Added Successfully",txtid.getText())).show();
             loadtable();
         }else {
@@ -80,8 +82,8 @@ public class ItemFormController implements Initializable {
     @FXML
     void btnUpdateItemOnAction(ActionEvent event) {
         Item item=new Item(txtid.getText(),txtdesc.getText(), txtpacksize.getText(),Double.parseDouble(txtunitprize.getText()),Integer.parseInt(txtqty.getText()));
-        if (service.updateItem(item)){
-            new Alert(Alert.AlertType.INFORMATION,String.format("Item Name :- %s Updated Successfully",item.getDesc())).show();
+        if (service1.updateItem(item)){
+            new Alert(Alert.AlertType.INFORMATION,String.format("Item Name :- %s Updated Successfully",item.getDescription())).show();
             loadtable();
         }else {
             new Alert(Alert.AlertType.ERROR, "Item Not Updated").show();
@@ -90,44 +92,26 @@ public class ItemFormController implements Initializable {
 
     @FXML
     void btnViewSearchOnAction(ActionEvent event) {
-        Item item = service.saerchItem(txtid.getText());
-            txtdesc.setText(item.getDesc());
-            txtpacksize.setText(item.getPacksize());
-            txtunitprize.setText(item.getUnitprize().toString());
-            txtqty.setText(item.getQty().toString());
+        Item item = service1.saerchItem(txtid.getText());
+            txtdesc.setText(item.getDescription());
+            txtpacksize.setText(item.getPackSize());
+            txtunitprize.setText(item.getUnitPrice().toString());
+            txtqty.setText(item.getQtyOnHand().toString());
 
     }
 
     private void loadtable(){
-        collitemcode.setCellValueFactory(new PropertyValueFactory<>("itemcode"));
-        colldesc.setCellValueFactory(new PropertyValueFactory<>("desc"));
-        collpacksize.setCellValueFactory(new PropertyValueFactory<>("packsize"));
-        collunitprize.setCellValueFactory(new PropertyValueFactory<>("unitprize"));
-        collqty.setCellValueFactory(new PropertyValueFactory<>("qty"));
-
-        ObservableList<Item> itemObservableList = FXCollections.observableArrayList();
-        String SQL="SELECT *  FROM item;";
-        try {
-            ResultSet res = CrudUtil.execute(SQL);
-            while(res.next()){
-                Item item=new Item(
-                        res.getString("ItemCode"),
-                        res.getString("Description"),
-                        res.getString("PackSize"),
-                        res.getDouble("UnitPrice"),
-                        res.getInt("QtyOnHand")
-                );
-                itemObservableList.add(item);
-            }
-            itemtable.setItems(itemObservableList);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        collitemcode.setCellValueFactory(new PropertyValueFactory<>("ItemCode"));
+        colldesc.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        collpacksize.setCellValueFactory(new PropertyValueFactory<>("PackSize"));
+        collunitprize.setCellValueFactory(new PropertyValueFactory<>("UnitPrice"));
+        collqty.setCellValueFactory(new PropertyValueFactory<>("QtyOnHand"));
+        itemtable.setItems(service1.getAllItems());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        service=ItemServiceImpl.getInstance();
+        service= ItemService1Impl.getInstance();
         loadtable();
 
         itemtable.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
@@ -138,11 +122,11 @@ public class ItemFormController implements Initializable {
 
     private void setTextToValues(Item newValue) {
         if(newValue!=null){
-           txtid.setText(newValue.getItemcode());
-           txtdesc.setText(newValue.getDesc());
-           txtpacksize.setText(""+newValue.getQty());
-           txtunitprize.setText(""+newValue.getUnitprize());
-           txtqty.setText(""+newValue.getQty());
+           txtid.setText(newValue.getItemCode());
+           txtdesc.setText(newValue.getDescription());
+           txtpacksize.setText(""+newValue.getQtyOnHand());
+           txtunitprize.setText(""+newValue.getUnitPrice());
+           txtqty.setText(""+newValue.getQtyOnHand());
         }
     }
 }

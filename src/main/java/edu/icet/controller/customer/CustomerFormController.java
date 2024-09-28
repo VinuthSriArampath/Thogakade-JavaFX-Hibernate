@@ -102,7 +102,7 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void btnDeleteCustomerOnAction(ActionEvent event) {
-        if(service.deleteCustomer(new Customer(txtid.getText(),null,null,null,null,null,null,null,null))){
+        if(service.deleteCustomer(txtid.getText())){
             loadtable();
             new Alert(Alert.AlertType.INFORMATION, "Customer Deleted !!").show();
         }else {

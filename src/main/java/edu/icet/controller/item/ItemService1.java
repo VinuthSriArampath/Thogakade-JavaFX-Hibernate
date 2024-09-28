@@ -7,13 +7,12 @@ import javafx.collections.ObservableList;
 
 import java.util.List;
 
-public interface ItemService {
-   Boolean addItem(Item item);
-   Boolean deleteItem(String id);
-   Boolean updateItem(Item item);
-   ObservableList<Item> getAllItems();
-   ObservableList<String> getItemCodes();
+public interface ItemService1 {
+//   Boolean addItem(Item item);
+//   Boolean deleteItem(String id);
+//   Boolean updateItem(Item item);
+//   ObservableList<Item> getAllItems();
+//   ObservableList<String> getItemCodes();
    Item saerchItem(String id);
-
    Boolean updateStock(List<OrderDetail> orderdetails);
 }

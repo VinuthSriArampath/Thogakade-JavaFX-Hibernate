@@ -1,6 +1,6 @@
 package edu.icet.controller.placeorder;
 
-import edu.icet.controller.item.ItemServiceImpl;
+import edu.icet.controller.item.ItemService1Impl;
 import edu.icet.db.DBConnecttion;
 import edu.icet.model.Order;
 import javafx.scene.control.Alert;
@@ -26,7 +26,7 @@ public class OrderController {
             if (orderadded){
                 boolean detailsadded = orderDetailsControll.addOrderDetails(order.getOrderdetails());
                 if (detailsadded){
-                   Boolean stockupdated= ItemServiceImpl.getInstance().updateStock(order.getOrderdetails());
+                   Boolean stockupdated= ItemService1Impl.getInstance().updateStock(order.getOrderdetails());
                    if (stockupdated){
                        new Alert(Alert.AlertType.CONFIRMATION,"OrderPlaced Successfully").show();
                    }

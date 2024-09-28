@@ -1,9 +1,11 @@
 package edu.icet.controller.placeorder;
 import com.jfoenix.controls.JFXTextField;
 
-import edu.icet.controller.item.ItemServiceImpl;
+import edu.icet.controller.item.ItemService1Impl;
 import edu.icet.model.*;
 import edu.icet.service.ServiceFactory;
+import edu.icet.service.SuperService;
+import edu.icet.service.custom.ItemService;
 import edu.icet.service.custom.impl.CustomerServiceImpl;
 import edu.icet.util.ServiceType;
 import javafx.animation.Animation;
@@ -233,15 +235,15 @@ public class PlaceOrderFormController implements Initializable {
     private void setItem(String newValue) {
         if (newValue!=null){
             Item item = searchItem(newValue);
-            cmbitemcode.setValue(item.getItemcode());
-            txtitemdesc.setText(item.getDesc());
-            txtitemstock.setText(item.getQty().toString());
-            txtitemunitprice.setText(item.getUnitprize().toString());
+            cmbitemcode.setValue(item.getItemCode());
+            txtitemdesc.setText(item.getDescription());
+            txtitemstock.setText(item.getQtyOnHand().toString());
+            txtitemunitprice.setText(item.getUnitPrice().toString());
         }
     }
 
     private Item searchItem(String id) {
-        return ItemServiceImpl.getInstance().saerchItem(id);
+        return ItemService1Impl.getInstance().saerchItem(id);
     }
 
     private void setCustomer(String newValue) {
@@ -258,7 +260,8 @@ public class PlaceOrderFormController implements Initializable {
     }
 
     private void loadItemCodes(){
-        cmbitemcode.setItems(ItemServiceImpl.getInstance().getItemCodes());
+        ItemService itemService = ServiceFactory.getInstance().getService(ServiceType.ITEM);
+        cmbitemcode.setItems(itemService.getItemCodes());
     }
     private void loadCustomerIds(){
         CustomerServiceImpl customerService = ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
